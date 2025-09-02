@@ -1,0 +1,414 @@
+@prefix : <http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix fabio: <http://purl.org/spar/fabio/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@base <http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/> .
+
+<http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez> rdf:type owl:Ontology ;
+                                                                        rdfs:comment "Cette ontologie est le fruit du projet Fil Rouge, projet qui s'inscrit dans le cadre du MS SIO de CentraleSupélec. Elle a été réalisée par Antoine VALETTE et Guillaume RAMIREZ." .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/atBoardOf
+:atBoardOf rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :worksFor ;
+           rdfs:range :Company ;
+           rdfs:comment "Désigne la relation lorsqu'une personne est membre du conseil d'adlministration d'une organisation." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/coauthor
+:coauthor rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdf:type owl:SymmetricProperty ;
+          rdfs:domain :Person ;
+          rdfs:range :Person ;
+          rdfs:comment "Désigne la relation entre deux autheurs d'un même document (ScholarlyWork)." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/hasChild
+:hasChild rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :relatedTo ;
+          owl:inverseOf :hasParent ;
+          rdfs:comment "Désigne la relation entre une organisation mère et une organisation fille." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/hasParent
+:hasParent rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :relatedTo ;
+           rdfs:comment "Désigne la relation entre une organisation fille et une organisation mère." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/hasSponsor
+:hasSponsor rdf:type owl:ObjectProperty ;
+            rdfs:domain :Patent ;
+            rdfs:range :Organization ;
+            rdfs:comment "Désigne la relation entre un brevet et l'organisation qui   finance/sponsorie/encadre ce brevet." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/inCity
+:inCity rdf:type owl:ObjectProperty ;
+        rdfs:range :City ;
+        rdfs:comment "Désigne la relation entre une personne ou une organisation et une ville." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/inCountry
+:inCountry rdf:type owl:ObjectProperty ;
+           rdfs:range :Country ;
+           rdfs:comment "Désigne la relation entre une personne, une organisation ou une ville et un pays." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/isAuthorOf
+:isAuthorOf rdf:type owl:ObjectProperty ;
+            rdfs:domain :Researcher ;
+            rdfs:range :ScholarlyWork ;
+            rdfs:comment "Désigne la relation entre une personne et le document (scholarlywork) dont elle est l'auteur." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/isCEOof
+:isCEOof rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :worksFor ;
+         rdfs:comment "Désigne la relation lorsqu'une personne est directeur général ou préseident directeur général d'une organisation." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/isCFOof
+:isCFOof rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :worksFor ;
+         rdfs:comment "Désigne la relation lorsqu'une personne est directeur financier ou DAF d'une organisation." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/isCTOof
+:isCTOof rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :worksFor ;
+         rdfs:comment "Désigne la relation lorsqu'une personne est directeur technique (Chief Technical officer ou Chief Technology Officer) d'une organisation." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/isFounderOf
+:isFounderOf rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :worksFor ;
+             rdfs:range :Company ;
+             rdfs:comment "Désigne la relation lorsqu'une personne est fondateur ou co-fondateur d'une organisation." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/isInventorOf
+:isInventorOf rdf:type owl:ObjectProperty ;
+              rdfs:comment "Désigne la relation entre l'inventeur d'un brevet et le brevet." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/isInvestorOf
+:isInvestorOf rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :worksFor ;
+              rdfs:comment "Désigne la relation lorsqu'une personne est investisseur dans une organisation." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/isOtherExec
+:isOtherExec rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :worksFor ;
+             rdfs:comment "Désigne la relation lorsqu'une personne est membre du comité exécutif d'une organisation mais n'est pas CEO, CFO, CTO." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/isOwnerOf
+:isOwnerOf rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :worksFor ;
+           rdfs:comment "Désigne la relation lorsqu'une personne est actionnaire principal d'une organisation." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/isPublishedIn
+:isPublishedIn rdf:type owl:ObjectProperty ;
+               rdfs:comment "Désigne la relation entre un document (scholarlywork) est une PublicationVenue." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/relatedTo
+:relatedTo rdf:type owl:ObjectProperty ;
+           rdfs:comment "Désigne l'existence d'un lien entre deux organisations." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/similarTo
+:similarTo rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :relatedTo ;
+           rdf:type owl:SymmetricProperty ;
+           rdfs:comment "Désigne deux organisations liées et similaire dont on ne peut pas garantir une relation same as." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/worksFor
+:worksFor rdf:type owl:ObjectProperty ;
+          rdfs:comment "Désigne la relation entre une personne travaillant pour une organisation." .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/Alternate
+:Alternate rdf:type owl:DatatypeProperty ;
+           rdfs:domain :City ;
+           rdfs:comment "Noms et appellations alternatifs d'une ville." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/DBLP
+:DBLP rdf:type owl:DatatypeProperty ;
+      rdfs:comment "Identifiant se réfèrant à l’entrée correspondante dans la base de données bibliographiques DBLP, largement utilisée en informatique." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/Latitude
+:Latitude rdf:type owl:DatatypeProperty ;
+          rdfs:domain :City ;
+          rdfs:range xsd:float ;
+          rdfs:comment "Coordonnées de latitude d'une ville." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/Longitude
+:Longitude rdf:type owl:DatatypeProperty ;
+           rdfs:domain :City ;
+           rdfs:range xsd:float ;
+           rdfs:comment "Coordonnées de longitude d'une ville." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/MAG
+:MAG rdf:type owl:DatatypeProperty ;
+     rdfs:comment "Identifiant provenant du Microsoft Academic Graph (MAG), une base de données académique externe. Cet identifiant permet de faire le lien entre les enregistrements de Semantic Scholar et ceux indexés par Microsoft Academic." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/abstract
+:abstract rdf:type owl:DatatypeProperty ;
+          rdfs:comment "Résumé d'un document (ScholarlyWork) ou d'un brevet (patent)." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/bankrupcyDate
+:bankrupcyDate rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Company .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/cityName
+:cityName rdf:type owl:DatatypeProperty ;
+          rdfs:comment "Nom d'une ville géorgraphique, à utiliser si la ville n'est pas trouvé dans WikiData ou GeoNames." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/code_iso2
+:code_iso2 rdf:type owl:DatatypeProperty ;
+           rdfs:comment "Code ISO à deux chiffres identifiant un pays." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/code_iso3
+:code_iso3 rdf:type owl:DatatypeProperty ;
+           rdfs:comment "Code ISO à trois chiffres identifiant un pays." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/corpusid
+:corpusid rdf:type owl:DatatypeProperty ;
+          rdfs:comment "Identifiant interne attribué par Semantic Scholar pour organiser et indexer les publications dans leur corpus. Il facilite la gestion et le classement des documents au sein du système." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/creationDate
+:creationDate rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Company .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/description
+:description rdf:type owl:DatatypeProperty ;
+             rdfs:comment "Description d'une organisation." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/doi
+:doi rdf:type owl:DatatypeProperty ;
+     rdfs:comment "Le DOI (Digital Object Identifier) est un identifiant international standardisé pour les documents numériques. Il garantit un lien permanent vers la publication, indépendamment de son emplacement sur le web." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/firstName
+:firstName rdf:type owl:DatatypeProperty ;
+           rdfs:comment "Prénom d'une personne." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/issn
+:issn rdf:type owl:DatatypeProperty ;
+      rdfs:comment "Code de 8 chiffres servant à identifier les journaux, revues, magazines, périodiques de toute nature et sur tous supports, papier comme électronique; utilisé pour les publicationVenue." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/keyword
+:keyword rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf owl:topDataProperty ;
+         rdfs:domain :Organization ,
+                     :ScholarlyWork .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/lastName
+:lastName rdf:type owl:DatatypeProperty ;
+          rdfs:comment "Nom de famille d'une personne." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/paperid
+:paperid rdf:type owl:DatatypeProperty ;
+         rdfs:comment "Identifiant unique attribué par Semantic Scholar à chaque ScholarlyWork. Il sert à référencer et retrouver de manière univoque un article ou une communication scientifique au sein de leur système." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/population
+:population rdf:type owl:DatatypeProperty ;
+            rdfs:range xsd:integer ;
+            rdfs:comment "Nombre d'habitants d'une ville." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/publicationDate
+:publicationDate rdf:type owl:DatatypeProperty ;
+                 rdfs:range xsd:dateTimeStamp ;
+                 rdfs:comment "Date de publication d'un ScholarlyWork." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/publicationid
+:publicationid rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/region
+:region rdf:type owl:DatatypeProperty ;
+        rdfs:comment "La région géographique à laquelle appartient une personne ou une organisation." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/title
+:title rdf:type owl:DatatypeProperty ;
+       rdfs:comment "Le titre d'un document ou d'un brevet." .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/Archive
+:Archive rdf:type owl:Class ;
+         rdfs:subClassOf :Organization ;
+         rdfs:comment "Une organisation spécialisée dans l'archivage." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/City
+:City rdf:type owl:Class ;
+      rdfs:subClassOf :Places ;
+      rdfs:comment "Désigne les villes." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/Company
+:Company rdf:type owl:Class ;
+         rdfs:subClassOf :Organization ;
+         rdfs:comment "Une organisation a but lucratif : une entreprise." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/Country
+:Country rdf:type owl:Class ;
+         rdfs:subClassOf :Places ;
+         rdfs:comment "Désigne les pays." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/Facility
+:Facility rdf:type owl:Class ;
+          rdfs:subClassOf :Organization ;
+          rdfs:comment "Une organisation disposant d'un complexe ou d'une infrastructure physique." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/Government
+:Government rdf:type owl:Class ;
+            rdfs:subClassOf :Organization ;
+            rdfs:comment "Une organisation étatique spécialisée dand la gestione et l'administration d'un état." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/Healthcare
+:Healthcare rdf:type owl:Class ;
+            rdfs:subClassOf :Organization ;
+            rdfs:comment "Une organisation spécailisée dans la santé." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/Inventor
+:Inventor rdf:type owl:Class ;
+          rdfs:subClassOf :Person ;
+          rdfs:comment "Désigne une personne qui est à l'origine d'un brevet." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/Investor
+:Investor rdf:type owl:Class ;
+          rdfs:subClassOf :Organization ;
+          rdfs:comment "Une organisation spécailisée dans l'investissement (ces investissements peuvent être dans d'autres organisations)." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/NonProfit
+:NonProfit rdf:type owl:Class ;
+           rdfs:subClassOf :Organization ;
+           rdfs:comment "Une organisation à but non-lucratif : une association, une ONG." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/Organization
+:Organization rdf:type owl:Class ;
+              rdfs:comment "Désigne une entité structurée constituée de personnes ou d’autres organisations poursuivant un but commun. Elle permet de modéliser des entreprises, institutions, associations ou tout autre groupe organisé, en mettant en avant leurs caractéristiques et relations au sein du réseau. - inspiré de foaf:organization" .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/Other
+:Other rdf:type owl:Class ;
+       rdfs:subClassOf :Organization ;
+       rdfs:comment "Une organisation qui est en aucune autre sous-classe d'Organization." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/Patent
+:Patent rdf:type owl:Class ;
+        rdfs:comment "Un brevet issu de INPI." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/Person
+:Person rdf:type owl:Class ;
+        rdfs:comment "Représente un individu humain. Elle permet de décrire des caractéristiques personnelles telles que le nom, l’adresse email, la photo, et d’autres attributs qui facilitent la représentation et la connexion des personnes sur le Web. - inspiré de foaf:person" .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/Places
+:Places rdf:type owl:Class ;
+        rdfs:comment "Désigne les emplacements géographiques." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/PublicationVenue
+:PublicationVenue rdf:type owl:Class ;
+                  rdfs:comment "Désigne le support ou le canal de diffusion d’une publication scientifique (d'un ScholarlyWork). Il s’agit du lieu où l’article a été présenté ou publié, par exemple une revue, une conférence, un atelier ou tout autre périodique académique." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/Researcher
+:Researcher rdf:type owl:Class ;
+            rdfs:subClassOf :Person ;
+            rdfs:comment "Désigne une personne qui est auteur de documents (ScholarlYWorks)." .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/ScholarlyWork
+:ScholarlyWork rdf:type owl:Class ;
+               rdfs:comment "Une création intellectuelle abstraite issue de la recherche académique. Elle représente le contenu intellectuel central d’une production de recherche — comme un article de revue, un livre, une thèse ou une communication de conférence — et se distingue de toute incarnation physique ou numérique particulière (ses expressions ou manifestations). - définition reprise de l'ontologie FABIO" .
+
+
+###  http://www.semanticweb.org/fil_rouge_AntoineValette_GuillaumeRamirez/School
+:School rdf:type owl:Class ;
+        rdfs:subClassOf :Organization ;
+        rdfs:comment "Une organisation spécialisée dans l'éducation : une école, un établissement scolaire, une université, une faculté, etc.." .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Organization
+                :Patent
+                :Person
+                :Places
+                :PublicationVenue
+                :ScholarlyWork
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointProperties ;
+  owl:members ( :isCEOof
+                :isCFOof
+                :isCTOof
+                :isOtherExec
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  graphdb:
+    image: ontotext/graphdb:10.8.4
+    container_name: graphdb
+    ports:
+      - "7200:7200"
+    environment:
+      - AUTOLOAD_REPOSITORIES=true
+    volumes:
+      - graphdb-data:/opt/graphdb/home/data
+      - graphdb-conf:/opt/graphdb/home/conf
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7200"]
+      interval: 10s
+      timeout: 3s
+      retries: 20
+
+  init:
+    image: curlimages/curl:latest
+    depends_on:
+      graphdb:
+        condition: service_healthy
+    volumes:
+      - ./repo:/repo
+      - ./python:/python
+      - ./init_graphdb.sh:/init.sh
+    entrypoint: ["/bin/sh", "/init.sh"]
+
+volumes:
+  graphdb-data:
+  graphdb-conf:
