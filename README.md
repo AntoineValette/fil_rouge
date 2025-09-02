@@ -2,7 +2,7 @@
 
 Copie incomplète du projet Fil Rouge du MS SIO (promo 2025). Il manque notamment les fichiers cvs de ROR/ et crunchbase/ .
 
-Le but de ce projet était de concevoir une ontologie (et de la peupler via des API/sources gratuites) afin d'identifier un lien entre le monde de la recherche (acdémique et privée dans la mesure du possible) et la création de startup. Pour ce faire, nous avons créer un graphe sur GraphDB suivant l'ontologie suivante. 
+Le but de ce projet était de concevoir une ontologie (et de la peupler via des API/sources gratuites) afin d'identifier un lien entre le monde de la recherche (académique et privée dans la mesure du possible) et la création de startup. Pour ce faire, nous avons créé un graphe sur GraphDB basée sur l'ontologie (triplets RDF) suivante. 
 
 ## Ontologie
 
